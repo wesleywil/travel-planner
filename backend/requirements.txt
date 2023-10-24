@@ -1,9 +1,13 @@
 asgiref==3.7.2
+cffi==1.16.0
+cryptography==41.0.5
 Django==4.2.6
 django-cors-headers==4.3.0
 django-environ==0.11.2
+django-rest-knox==4.2.0
 djangorestframework==3.14.0
 Pillow==10.1.0
+pycparser==2.21
 python-decouple==3.8
 pytz==2023.3.post1
 sqlparse==0.4.4
