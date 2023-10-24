@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # Third Party Apps
     'rest_framework',
+    'knox',
     'corsheaders',
 ]
 
@@ -152,9 +153,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    'DEFAULT_PERMISSION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
 
 CORS_ALLOWED_ORIGINS = [
