@@ -139,3 +139,4 @@ GitHub.sublime-settings
 
 # Models Migrations
 accounts/migrations
+plans/migrations

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Local Apps
     'accounts',
+    'plans',
 
     # Third Party Apps
     'rest_framework',
