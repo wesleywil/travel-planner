@@ -1,11 +1,10 @@
 from django.contrib.auth import login
 from django.http import Http404
-from django.views.decorators.csrf import csrf_exempt
 
-from rest_framework import status, generics, permissions
+from rest_framework import generics, permissions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
-from rest_framework.views import APIView
+
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
 
@@ -14,7 +13,6 @@ from accounts.models import User
 from accounts.serializers import (
     UserModelSerializer,
     RegisterSerializer,
-    LoginSerializer
 )
 
 
@@ -43,19 +41,12 @@ class LoginView(KnoxLoginView):
         return super(LoginView, self).post(request, format=None)
 
 
-class RetrieveUserProfileByToken(APIView):
-    permission_classes = [permissions.IsAuthenticated, ]
+class UserProfileView(generics.RetrieveAPIView):
+    permission_classes = ([permissions.IsAuthenticated])
+    serializer_class = UserModelSerializer
 
-    def get_object(self, pk):
+    def get_object(self):
         try:
-            return AuthToken.objects.get(token_key=pk)
-        except AuthToken.DoesNotExist:
+            return self.request.user
+        except User.DoesNotExist:
             raise Http404
-
-    def post(self, request, format=None):
-        data = request.data["token_key"]
-        converted = data[:8]
-        Auth = AuthToken.objects.get(token_key=converted)
-        user = User.objects.get(id=Auth.user.id)
-        serializer = UserModelSerializer(user)
-        return Response(serializer.data)
