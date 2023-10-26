@@ -14,7 +14,7 @@ class Plan(models.Model):
 
 class ToDo(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
-    tank = models.CharField(max_length=200)
+    task = models.CharField(max_length=200)
     description = models.TextField()
     due_date = models.DateField(null=True, blank=True)
     completed = models.BooleanField(default=False)
