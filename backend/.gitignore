@@ -140,3 +140,10 @@ GitHub.sublime-settings
 # Models Migrations
 accounts/migrations
 plans/migrations
+
+#Ignore all image files
+*.jpg
+*.png
+
+#Allow the default image
+!static/images/plan_images/default.jpg
