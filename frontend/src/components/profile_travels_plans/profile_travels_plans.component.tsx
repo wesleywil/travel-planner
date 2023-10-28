@@ -1,26 +1,34 @@
 import ProfileTravelsPlanCard from "../profile_travels_plan_card/profile_travels_plan_card.component";
 
-const ProfileTravelsPlans = () => {
+type ProfileTravelsPlansProps = {
+  plans: [
+    {
+      id: number;
+      place: string;
+      country: string;
+      travel_date: string;
+      days: number;
+      completed: boolean;
+    }
+  ];
+};
+
+const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
   return (
-    <div className="w-full h-[30rem] p-2 flex gap-2 justify-center border overflow-y-auto">
-      <ProfileTravelsPlanCard
-        place="Paris"
-        country="France"
-        travel_date="Nov 15 2023"
-        days={30}
-      />
-      <ProfileTravelsPlanCard
-        place="Rome"
-        country="Italy"
-        travel_date="Feb 22 2024"
-        days={15}
-      />
-      <ProfileTravelsPlanCard
-        place="London"
-        country="England"
-        travel_date="March 06 2024"
-        days={60}
-      />
+    <div className="w-full h-[30rem] p-2 flex gap-2 justify-center border rounded-xl overflow-y-auto">
+      {plans.length ? (
+        plans.map((item) => (
+          <ProfileTravelsPlanCard
+            key={item.id}
+            place={item.place}
+            country={item.country}
+            travel_date={item.travel_date}
+            days={item.days}
+          />
+        ))
+      ) : (
+        <h1 className="self-center text-2xl font-bold">NO PLANS YET</h1>
+      )}
     </div>
   );
 };

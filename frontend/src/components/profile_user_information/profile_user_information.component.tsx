@@ -1,12 +1,30 @@
-type ProfileUserInformationProps = {
-  username: string;
-  email: string;
-};
+import { useEffect, useState } from "react";
 
-const ProfileUserInformation = ({
-  username,
-  email,
-}: ProfileUserInformationProps) => {
+const ProfileUserInformation = () => {
+  const [data, setData] = useState<{ username: string; email: string }>();
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Token ${localStorage.getItem("token")}`,
+    };
+    const getUserInfo = async () => {
+      const res = await fetch(
+        "http://localhost:8000/api/retrieveUser/?format=json",
+        {
+          cache: "no-cache",
+          headers: headers,
+          credentials: "include",
+        }
+      );
+      setData(await res.json());
+      setIsLoading(false);
+    };
+    getUserInfo();
+  }, []);
+
+  if (isLoading) return <p>loading...</p>;
+  if (!data) return <p>No Profile Data</p>;
   return (
     <div className="flex flex-col items-center">
       <img
@@ -15,10 +33,10 @@ const ProfileUserInformation = ({
         className="w-32 h-32 p-2 rounded-full"
       />
       <h1 className="w-48 px-2 break-words text-center text-slate-200">
-        {username}
+        {data.username}
       </h1>
       <h2 className="w-48 px-2 break-words text-xs text-center text-slate-200">
-        {email}
+        {data.email}
       </h2>
     </div>
   );
