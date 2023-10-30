@@ -2,6 +2,7 @@ from django.http import Http404
 from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from knox.auth import TokenAuthentication
 
 
 from .models import Plan, ToDo
@@ -13,6 +14,7 @@ from .serializers import (
 
 class PlansViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 
     def get(self, request, format=None):
         queryset = Plan.objects.all().order_by('-id')
@@ -31,6 +33,7 @@ class PlansViewSet(APIView):
 
 class PlansDetailsViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 
     def get_object(self, pk):
         try:
@@ -59,6 +62,7 @@ class PlansDetailsViewSet(APIView):
 
 class ToDoViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 
     def get(self, request, format=None):
         queryset = ToDo.objects.all().order_by('-id')
@@ -77,6 +81,7 @@ class ToDoViewSet(APIView):
 
 class ToDoDetailsViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = (TokenAuthentication,)
 
     def get_object(self, pk):
         try:
