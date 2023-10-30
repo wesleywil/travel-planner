@@ -11,9 +11,13 @@ const initialState: UtilState = {
 export const utilsSlice = createSlice({
   name: "utils",
   initialState,
-  reducers: {},
+  reducers: {
+    switchFormHidden: (state) => {
+      state.hideFormPlan = !state.hideFormPlan;
+    },
+  },
 });
 
-export const {} = utilsSlice.actions;
+export const { switchFormHidden } = utilsSlice.actions;
 
 export default utilsSlice.reducer;
