@@ -1,7 +1,15 @@
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { switchFormHidden } from "@/redux/utils/utils";
+
 const ProfileTravelsControls = () => {
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className="w-full px-2 flex justify-between">
-      <button className="w-10 h-10 text-xl font-bold bg-red-600 hover:bg-red-800 rounded-full">
+      <button
+        onClick={() => dispatch(switchFormHidden())}
+        className="w-10 h-10 text-xl font-bold bg-red-600 hover:bg-red-800 rounded-full"
+      >
         +
       </button>
       <div className="p-2 flex gap-2">

@@ -6,7 +6,7 @@ const ProfileUserInformation = () => {
   useEffect(() => {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
+      Authorization: `Token 79fe4f0384bb3da659d9958bb3e9c76c27bfdef9249e6e6dde46b074f554d9e6`,
     };
     const getUserInfo = async () => {
       const res = await fetch(
