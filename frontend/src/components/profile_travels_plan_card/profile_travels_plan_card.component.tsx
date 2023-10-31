@@ -1,3 +1,7 @@
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { switchPlanDetailsHidden } from "@/redux/utils/utils";
+
 type ProfileTravelsPlanCardProps = {
   place: string;
   country: string;
@@ -11,6 +15,7 @@ const ProfileTravelsPlanCard = ({
   travel_date,
   days,
 }: ProfileTravelsPlanCardProps) => {
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <div className="w-60 h-72 flex flex-col justify-between bg-blue-300 border rounded-xl overflow-hidden">
       <h2 className="w-full font-semibold text-xl text-center bg-yellow-600">
@@ -22,7 +27,10 @@ const ProfileTravelsPlanCard = ({
           <h1 className="text-3xl font-bold">{days} days</h1>
         </div>
       </div>
-      <button className="w-full px-2 py-1 bg-red-600 hover:bg-red-800 text-white rounded">
+      <button
+        onClick={() => dispatch(switchPlanDetailsHidden())}
+        className="w-full px-2 py-1 bg-red-600 hover:bg-red-800 text-white rounded"
+      >
         Details
       </button>
     </div>
