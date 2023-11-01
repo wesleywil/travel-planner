@@ -1,37 +1,26 @@
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/redux/store";
 import { switchFormHidden } from "@/redux/utils/utils";
+import { createPlan } from "@/redux/plans/plans";
 
 const ProfilePlanForm = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Token ${localStorage.getItem("token")}`,
-    };
-
     const form = event.target as HTMLFormElement;
     const data = new FormData(form);
     const completed = data.get("completed") === "on"; // Check if the checkbox is checked
 
     const postData = {
       user: 1, // To be changed later, needs to get the ID from the logged-in user
-      place: data.get("place"),
-      country: data.get("country"),
-      travel_date: data.get("travel_date"),
-      days: data.get("days"),
+      place: data.get("place") as string,
+      country: data.get("country") as string,
+      travel_date: data.get("travel_date") as string,
+      days: parseInt(data.get("days") as string),
       completed: completed,
     };
-    const req = await fetch("http://localhost:8000/api/plans/", {
-      method: "POST",
-      credentials: "include",
-      headers: headers,
-      body: JSON.stringify(postData),
-    });
-    console.log("RESPONSE FROM REQUEST ", await req.json());
+    dispatch(createPlan(postData));
     dispatch(switchFormHidden());
   };
   return (

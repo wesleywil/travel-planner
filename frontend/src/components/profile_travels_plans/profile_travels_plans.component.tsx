@@ -1,16 +1,9 @@
+import { Plans } from "@/utils/interfaces";
+
 import ProfileTravelsPlanCard from "../profile_travels_plan_card/profile_travels_plan_card.component";
 
 type ProfileTravelsPlansProps = {
-  plans: [
-    {
-      id: number;
-      place: string;
-      country: string;
-      travel_date: string;
-      days: number;
-      completed: boolean;
-    }
-  ];
+  plans: Plans[];
 };
 
 const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
@@ -20,6 +13,7 @@ const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
         plans.map((item) => (
           <ProfileTravelsPlanCard
             key={item.id}
+            id={item.id!}
             place={item.place}
             country={item.country}
             travel_date={item.travel_date}
