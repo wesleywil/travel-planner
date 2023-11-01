@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import planReducer from "./plans/plans";
 import utilsReducer from "./utils/utils";
 
 export const store = configureStore({
     reducer:{
-        utils:utilsReducer
+        utils:utilsReducer,
+        plans:planReducer,
     }
 });
 
