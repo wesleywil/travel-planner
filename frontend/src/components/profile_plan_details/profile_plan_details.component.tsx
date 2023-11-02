@@ -4,6 +4,7 @@ import { switchPlanDetailsHidden } from "@/redux/utils/utils";
 
 import PlanDetails from "../plan_details/plan_details.component";
 import PlanUpdate from "../plan_update/plan_update.component";
+import PlanTodoList from "../plan_todo_list/plan_todo_list.component";
 
 const ProfilePlanDetails = () => {
   const plan = useSelector((state: RootState) => state.plans.plan);
@@ -21,6 +22,7 @@ const ProfilePlanDetails = () => {
         <PlanDetails data={plan} />
         <PlanUpdate data={plan} />
       </div>
+      <PlanTodoList planId={plan.id!} />
     </div>
   );
 };
