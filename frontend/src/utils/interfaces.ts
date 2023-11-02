@@ -22,9 +22,9 @@ export interface Plans{
 
 export interface ToDo{
     id?:number,
-    plan?:Plans,
+    plan?:Plans | number,
     task:string,
     description:string,
-    due_date:Date,
+    due_date:string,
     completed:boolean
 }

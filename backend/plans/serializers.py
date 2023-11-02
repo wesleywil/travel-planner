@@ -13,4 +13,4 @@ class PlanSerializer(serializers.ModelSerializer):
 class ToDoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
-        fields = ['id', 'plan', 'tank', 'description', 'due_date', 'completed']
+        fields = ['id', 'plan', 'task', 'description', 'due_date', 'completed']
