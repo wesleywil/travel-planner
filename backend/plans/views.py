@@ -64,13 +64,13 @@ class ToDoViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = (TokenAuthentication,)
 
-    def get(self, request, format=None):
-        queryset = ToDo.objects.all().order_by('-id')
+    def get(self, request, planId, format=None):
+        queryset = ToDo.objects.filter(plan_id=planId)
         serializer = ToDoSerializer(
             queryset, many=True, context={"request": request})
         return Response(serializer.data)
 
-    def post(self, request, format=None):
+    def post(self, request, planId, format=None):
         serializer = ToDoSerializer(
             data=request.data, context={"request": request})
         if serializer.is_valid():
