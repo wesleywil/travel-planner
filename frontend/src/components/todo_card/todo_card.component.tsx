@@ -1,6 +1,16 @@
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
 import { ToDo } from "@/utils/interfaces";
+import { switchTodoDetailsHidden } from "@/redux/utils/utils";
+import { selectTodo } from "@/redux/todos/todos";
 
 const TodoCard = ({ data }: { data: ToDo }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSelectTodo = () => {
+    dispatch(selectTodo(data.id!));
+    dispatch(switchTodoDetailsHidden());
+  };
   return (
     <div className="w-fit h-fit flex flex-col border rounded">
       <h1 className="bg-yellow-500 text-black text-center font-semibold">
@@ -13,12 +23,22 @@ const TodoCard = ({ data }: { data: ToDo }) => {
         </div>
 
         {data.completed ? (
-          <div className="w-full bg-blue-500">
-            <button className="text-black">Details</button>
+          <div className="w-full bg-blue-500 text-center font-semibold">
+            <button
+              onClick={handleSelectTodo}
+              className="text-black hover:text-white"
+            >
+              Details
+            </button>
           </div>
         ) : (
           <div className="w-full bg-green-500 text-center font-semibold">
-            <button className="text-black hover:text-white">Details</button>
+            <button
+              onClick={handleSelectTodo}
+              className="text-black hover:text-white"
+            >
+              Details
+            </button>
           </div>
         )}
       </div>
