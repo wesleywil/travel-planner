@@ -17,7 +17,7 @@ export default function Profile() {
   );
   return (
     <main className="min-h-screen min-w-screen flex flex-col items-center z-0">
-      <h1 className="mt-8 mb-2 text-3xl font-bold">Profile</h1>
+      <h1 className="mt-8 mb-2 text-[#f7fbf9] text-3xl font-bold">Profile</h1>
       {/* Form */}
       {formHidden ? "" : <ProfilePlanForm />}
       {planDetailsHidden ? "" : <ProfilePlanDetails />}

@@ -1,22 +1,23 @@
 import { useDispatch } from "react-redux";
+import { FaPlus } from "react-icons/fa";
 import type { AppDispatch } from "@/redux/store";
 import { switchFormHidden } from "@/redux/utils/utils";
 
 const ProfileTravelsControls = () => {
   const dispatch = useDispatch<AppDispatch>();
   return (
-    <div className="w-full px-2 flex justify-between">
+    <div className="w-full px-2 py-1 flex justify-between">
       <button
         onClick={() => dispatch(switchFormHidden())}
-        className="w-10 h-10 text-xl font-bold bg-red-600 hover:bg-red-800 rounded-full"
+        className="p-2 text-[#2c2d35] text-xl font-bold bg-[#97c34f] hover:bg-[#f7fbf9] rounded-full transform duration-500 ease-in-out"
       >
-        +
+        <FaPlus />
       </button>
-      <div className="p-2 flex gap-2">
-        <button className="px-2 py-1 bg-blue-600 hover:bg-blue-800 rounded">
+      <div className=" flex gap-2 text-[#2c2d35] font-semibold">
+        <button className="px-2 py-1 bg-[#f7fbf9] hover:bg-[#f7fbf9]/70 rounded transform duration-500 ease-in-out">
           Plans
         </button>
-        <button className="px-2 py-1 bg-green-600 hover:bg-green-800 rounded">
+        <button className="px-2 py-1 bg-[#97c34f] hover:bg-[#97c34f]/70 rounded transform duration-500 ease-in-out">
           Visited
         </button>
       </div>

@@ -12,33 +12,23 @@ const TodoCard = ({ data }: { data: ToDo }) => {
     dispatch(switchTodoDetailsHidden());
   };
   return (
-    <div className="w-fit h-fit flex flex-col border rounded">
-      <h1 className="bg-yellow-500 text-black text-center font-semibold">
-        {data.task}
-      </h1>
+    <div className="w-fit h-fit flex flex-col text-[#2c2d35] bg-[#f7fbf9] border border-[#97c34f] rounded overflow-hidden">
+      <h1 className="bg-[#97c34f] text-center font-semibold">{data.task}</h1>
       <div className="flex flex-col">
-        <div className="p-1 flex flex-col items-center">
-          <h2>Due Date</h2>
+        <div className="p-2 flex flex-col items-center">
+          <h2 className="font-bold">Target Date</h2>
           <h3 className="text-xs">{String(data.due_date)}</h3>
         </div>
 
         {data.completed ? (
           <div className="w-full bg-blue-500 text-center font-semibold">
-            <button
-              onClick={handleSelectTodo}
-              className="text-black hover:text-white"
-            >
+            <button onClick={handleSelectTodo} className=" hover:text-white">
               Details
             </button>
           </div>
         ) : (
-          <div className="w-full bg-green-500 text-center font-semibold">
-            <button
-              onClick={handleSelectTodo}
-              className="text-black hover:text-white"
-            >
-              Details
-            </button>
+          <div className="w-full text-center font-semibold hover:text-[#f7fbf9] bg-[#97c34f] hover:bg-[#2c2d35] border-t border-[#97c34f] transform duration-500 ease-in-out">
+            <button onClick={handleSelectTodo}>Details</button>
           </div>
         )}
       </div>

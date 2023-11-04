@@ -11,8 +11,8 @@ const TodoList = ({ todos }: { todos: ToDo[] }) => {
           ))}
         </div>
       ) : (
-        <div className="w-full h-full p-2 flex flex-wrap justify-center">
-          <h1 className="self-center text-center text-2xl font-bold ">
+        <div className="w-full h-[15rem] p-2 flex flex-wrap justify-center items-center">
+          <h1 className="self-center text-[#f7fbf9] text-center text-2xl font-bold ">
             EMPTY TO DO LIST
           </h1>
         </div>

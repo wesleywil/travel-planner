@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { FaTimes } from "react-icons/fa";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { switchPlanDetailsHidden } from "@/redux/utils/utils";
 
@@ -14,14 +15,16 @@ const ProfilePlanDetails = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
   return (
-    <div className="absolute min-h-screen min-w-full flex flex-col items-center justify-center bg-gray-600/70 z-30">
+    <div className="absolute min-h-screen min-w-full flex flex-col items-center justify-center bg-[#2c2d35]/70 z-30">
       <button
         onClick={() => dispatch(switchPlanDetailsHidden())}
-        className="px-2 font-bold text-3xl bg-red-600 hover:bg-red-800 rounded-full"
+        className="p-2 font-bold text-[#2c2d35] text-3xl bg-[#97c34f] hover:bg-[#f7fbf9] rounded-full transform duration-700 ease-in-out"
       >
-        X
+        <FaTimes />
       </button>
-      <h1 className="my-2 text-2xl font-semibold">Profile Plan Details</h1>
+      <h1 className="my-2 text-[#f7fbf9] text-2xl font-semibold">
+        Profile Plan Details
+      </h1>
       {hideTodoDetails ? (
         <div className="w-2/3 flex gap-4 justify-evenly">
           <PlanDetails data={plan} />

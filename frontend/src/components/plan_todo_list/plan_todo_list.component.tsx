@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaPlus } from "react-icons/fa";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { fetchTodos } from "@/redux/todos/todos";
 import TodoList from "../todo_list/todo_list.component";
@@ -27,23 +28,23 @@ const PlanTodoList = ({ planId }: { planId: number }) => {
   if (isLoading) return <p>loading...</p>;
   if (!todos) return <p>No Plans Data</p>;
   return (
-    <div className="w-2/3 min-h-[20rem] my-2 flex flex-col bg-black/70 border rounded overflow-hidden">
-      <div className="w-full px-1 flex justify-between bg-yellow-500">
+    <div className="w-2/3 min-h-[20rem] my-2 flex flex-col text-[#2c2d35] bg-[#2c2d35]/70 border border-[#f7fbf9] rounded overflow-hidden">
+      <div className="w-full px-1 flex justify-between bg-[#97c34f]">
         <button
           onClick={() => setFormHidden(!formHidden)}
-          className="px-2 my-2 text-2xl font-bold bg-red-500 hover:bg-red-700 rounded-full"
+          className="p-1 my-2 text-2xl font-bold hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded-full transform duration-500 ease-in-out"
         >
-          +
+          <FaPlus />
         </button>
-        <h1 className="self-center text-black font-bold text-xl">To Do List</h1>
-        <div className="px-1 text-black">
+        <h1 className="self-center font-bold text-xl">To Do List</h1>
+        <div className="px-1 font-semibold">
           <div className="flex gap-1 items-center">
             <span className="w-12 text-right">To Do</span>
-            <div className="w-4 h-4 bg-green-500"></div>
+            <div className="w-4 h-4 bg-[#97c34f] border border-[#2c2d35]"></div>
           </div>
           <div className="flex gap-1 items-center">
             <span className="w-12 text-right">Done</span>
-            <div className="w-4 h-4 bg-blue-500"></div>
+            <div className="w-4 h-4 bg-[#f7fbf9] border border-[#2c2d35]"></div>
           </div>
         </div>
       </div>

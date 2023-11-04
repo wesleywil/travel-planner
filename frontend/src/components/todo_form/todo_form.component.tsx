@@ -40,16 +40,20 @@ const TodoForm = ({ planId }: { planId: number }) => {
       ></textarea>
       <input type="date" name="due_date" className="px-2 py-1 rounded" />
       <div className="w-full flex gap-2 bg-white px-2 py-1 rounded">
-        <input type="checkbox" name="completed" />
+        <input
+          type="checkbox"
+          name="completed"
+          className="self-center w-4 h-4"
+        />
         <span className="text-gray-400">Already Did this Task?</span>
       </div>
       <div className="flex gap-4 justify-center">
-        <button className="px-2 py-1 bg-black hover:bg-slate-700 text-white font-semibold rounded">
+        <button className="px-2 py-1 text-[#2c2d35] bg-[#97c34f] hover:bg-[#f7fbf9] font-semibold rounded">
           Submit
         </button>
         <button
           type="button"
-          className="px-2 py-1 bg-black hover:bg-slate-700 text-white font-semibold rounded"
+          className="px-2 py-1 text-[#2c2d35] bg-[#97c34f] hover:bg-[#f7fbf9] font-semibold rounded"
         >
           Cancel
         </button>

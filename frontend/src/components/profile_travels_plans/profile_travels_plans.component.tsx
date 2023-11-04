@@ -8,7 +8,7 @@ type ProfileTravelsPlansProps = {
 
 const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
   return (
-    <div className="w-full h-[30rem] p-2 flex gap-2 justify-center border rounded-xl overflow-y-auto">
+    <div className="w-full h-[30rem] p-2 flex gap-2 justify-center border border-[#f7fbf9] rounded-xl overflow-y-auto">
       {plans.length ? (
         plans.map((item) => (
           <ProfileTravelsPlanCard
@@ -21,7 +21,9 @@ const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
           />
         ))
       ) : (
-        <h1 className="self-center text-2xl font-bold">NO PLANS YET</h1>
+        <h1 className="self-center text-[#f7fbf9] text-2xl font-bold">
+          NO PLANS YET
+        </h1>
       )}
     </div>
   );

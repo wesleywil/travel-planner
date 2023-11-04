@@ -25,13 +25,13 @@ const ProfileTravelsPlanCard = ({
     dispatch(switchPlanDetailsHidden());
   };
   return (
-    <div className="w-60 h-72 flex flex-col justify-between bg-blue-300 border rounded-xl overflow-hidden">
-      <h2 className="w-full font-semibold text-xl text-center bg-yellow-600">
+    <div className="w-60 h-72 flex flex-col justify-between text-[#2c2d35] bg-[#f7fbf9] border border-[#97c34f] rounded-xl overflow-hidden">
+      <h2 className="w-full font-semibold text-xl text-center bg-[#97c34f]">
         {place} - {country}
       </h2>
-      <div className="p-2 flex flex-col items-center justify-center text-black">
-        <div className="w-40 h-40 flex flex-col items-center justify-center rounded-full border-2 border-black">
-          <h3>{String(travel_date)}</h3>
+      <div className="p-2 flex flex-col items-center justify-center">
+        <div className="w-40 h-40 flex flex-col items-center justify-center rounded-full border-2 border-[#2c2d35]">
+          <h3>{travel_date}</h3>
           <h1 className="text-3xl font-bold">{days} days</h1>
         </div>
       </div>
@@ -39,7 +39,7 @@ const ProfileTravelsPlanCard = ({
         onClick={() => {
           selectPlanById(id);
         }}
-        className="w-full px-2 py-1 bg-red-600 hover:bg-red-800 text-white rounded"
+        className="w-full px-2 py-1 hover:text-[#f7fbf9] bg-[#97c34f] hover:bg-[#2c2d35] border-t border-[#97c34f] rounded-b transform duration-500 ease-in-out"
       >
         Details
       </button>

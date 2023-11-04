@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { FaTimes, FaTrashAlt } from "react-icons/fa";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { switchTodoDetailsHidden } from "@/redux/utils/utils";
 import { updateTodo, deleteTodo } from "@/redux/todos/todos";
@@ -15,7 +16,6 @@ const TodoDetails = () => {
       ...todo,
       completed: event.target.checked,
     };
-    //console.log("UPDATE DATA=>", todoData);
     dispatch(updateTodo({ id: todo.id!, data: todoData }));
     dispatch(switchTodoDetailsHidden());
   };
@@ -25,40 +25,44 @@ const TodoDetails = () => {
     dispatch(switchTodoDetailsHidden());
   };
   return (
-    <div className="w-2/3 bg-black/70 border rounded overflow-hidden">
-      <div className="w-full px-1 flex bg-yellow-500">
-        <h1 className="grow self-center text-center text-black font-bold text-xl bg-yellow-500">
+    <div className="w-2/3 text-[#2c2d35] bg-[#2c2d35]/70 border rounded overflow-hidden">
+      <div className="w-full px-1 flex bg-[#97c34f]">
+        <h1 className="grow self-center text-center font-bold text-xl">
           To Do Details
         </h1>
         <button
           onClick={() => dispatch(switchTodoDetailsHidden())}
-          className="self-center  my-1 px-2 text-2xl font-bold bg-red-500 hover:bg-red-700 rounded-full"
+          className="self-center my-1 p-1 text-xl font-bold hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded-full transform duration-500 ease-in-out"
         >
-          X
+          <FaTimes />
         </button>
       </div>
-      <div className="p-2 flex flex-col items-center text-center">
-        <div className="w-full flex justify-between">
+      <div className="p-2 flex flex-col items-center text-center text-[#f7fbf9]">
+        <div className="w-full py-1 flex justify-between">
           <h1 className="grow ml-16 text-2xl font-bold">
             {plan.place} - {plan.country}
           </h1>
           <button
             onClick={handleDelete}
-            className="self-center my-1 px-2 font-bold bg-red-500 hover:bg-red-700 rounded"
+            className="self-center p-1 font-bold text-[#2c2d35] bg-[#97c34f] hover:bg-[#f7fbf9] rounded transform duration-500 ease-in-out"
           >
-            Delete
+            <FaTrashAlt />
           </button>
         </div>
 
-        <h2 className="w-full p-1 border-y">Activity Date: {todo.due_date}</h2>
-        <h2>Task: {todo.task}</h2>
+        <h2 className="w-full p-1 border-y">
+          <span className="font-bold">Target Date:</span> {todo.due_date}
+        </h2>
+        <h2>
+          <span className="font-bold">Task:</span> {todo.task}
+        </h2>
         <div className="w-full flex flex-col p-1 border-y">
-          <h2>Description</h2>
-          <p>{todo.description}</p>
+          <h2 className="font-bold">Description</h2>
+          <p className="p-2">{todo.description}</p>
         </div>
-        <h1>Completed?</h1>
+        <h1 className="pb-2 text-xl">Completed?</h1>
         <div className="flex">
-          <div className="self-center p-1 flex  border">
+          <div className="self-center p-1 flex  border border-[#f7fbf9]">
             <input
               type="checkbox"
               defaultChecked={todo.completed}
@@ -68,9 +72,13 @@ const TodoDetails = () => {
           </div>
 
           {todo.completed ? (
-            <h1 className="p-1 bg-blue-500 rounded-r">DONE</h1>
+            <h1 className="self-center p-1 font-bold text-[#2c2d35] bg-[#f7fbf9] border border-[#97c34f] rounded-r">
+              DONE
+            </h1>
           ) : (
-            <h1 className="p-1 bg-green-500 rounded-r">TO DO</h1>
+            <h1 className="self-center p-1 font-bold text-[#2c2d35] bg-[#97c34f] border border-[#97c34f] rounded-r">
+              TO DO
+            </h1>
           )}
         </div>
         <div className="w-full p-1 border-b"></div>

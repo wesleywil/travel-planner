@@ -26,13 +26,13 @@ const PlanUpdate = ({ data }: { data: Plans }) => {
   };
 
   return (
-    <div className="w-1/2 flex flex-col items-center gap-2 bg-black/70 border rounded overflow-hidden">
-      <div className="w-full px-2 flex justify-between bg-yellow-500">
-        <h1 className="self-center text-black font-bold text-xl">Update</h1>
+    <div className="w-1/2 flex flex-col items-center gap-2 text-[#2c2d35] bg-[#2c2d35]/70 border border-[#f7fbf9] rounded overflow-hidden">
+      <div className="w-full min-h-[2rem] px-2 flex justify-between bg-[#97c34f]">
+        <h1 className="self-center font-bold text-xl">Update</h1>
       </div>
       <form
         onSubmit={handleUpdate}
-        className="mt-2 flex flex-col gap-2 text-black font-semibold"
+        className="w-2/3 mt-2 flex flex-col gap-2 text-black font-semibold"
       >
         <input
           type="text"
@@ -68,17 +68,18 @@ const PlanUpdate = ({ data }: { data: Plans }) => {
             type="checkbox"
             name="completed"
             defaultChecked={data.completed}
+            className="self-center w-4 h-4"
           />
           <span className="text-gray-400">Already Did this plan?</span>
         </div>
         <div className="flex gap-4 justify-center">
-          <button className="px-2 py-1 bg-black hover:bg-slate-700 text-white font-semibold rounded">
+          <button className="px-2 py-1 bg-[#97c34f] hover:bg-[#f7fbf9] font-semibold rounded transform duration-500 ease-in-out">
             Update
           </button>
           <button
             type="button"
             onClick={() => dispatch(switchPlanDetailsHidden())}
-            className="px-2 py-1 bg-black hover:bg-slate-700 text-white font-semibold rounded"
+            className="px-2 py-1 bg-[#97c34f] hover:bg-[#f7fbf9] font-semibold rounded transform duration-500 ease-in-out"
           >
             Cancel
           </button>
