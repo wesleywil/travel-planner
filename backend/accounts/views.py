@@ -7,6 +7,7 @@ from rest_framework.response import Response
 
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
+from knox.auth import TokenAuthentication
 
 
 from accounts.models import User
@@ -43,6 +44,7 @@ class LoginView(KnoxLoginView):
 
 class UserProfileView(generics.RetrieveAPIView):
     permission_classes = ([permissions.IsAuthenticated])
+    authentication_classes = (TokenAuthentication,)
     serializer_class = UserModelSerializer
 
     def get_object(self):

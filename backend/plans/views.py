@@ -17,7 +17,7 @@ class PlansViewSet(APIView):
     authentication_classes = (TokenAuthentication,)
 
     def get(self, request, format=None):
-        queryset = Plan.objects.all().order_by('-id')
+        queryset = Plan.objects.filter(user=request.user).order_by('-id')
         serializer = PlanSerializer(
             queryset, many=True, context={"request": request})
         return Response(serializer.data)
