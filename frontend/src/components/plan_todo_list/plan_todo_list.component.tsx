@@ -9,14 +9,21 @@ import TodoForm from "../todo_form/todo_form.component";
 const PlanTodoList = ({ planId }: { planId: number }) => {
   const todos = useSelector((state: RootState) => state.todos.todos);
   const status = useSelector((state: RootState) => state.todos.status);
+  const hidePlanDetails = useSelector(
+    (state: RootState) => state.utils.hidePlanDetails
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const [isLoading, setIsLoading] = useState(true);
   const [formHidden, setFormHidden] = useState(true);
 
   useEffect(() => {
+    dispatch(fetchTodos(planId));
+    setIsLoading(false);
+  }, [hidePlanDetails]);
+
+  useEffect(() => {
     if (
-      status === "idle" ||
       status === "todo created" ||
       status === "todo updated" ||
       status === "todo deleted"
