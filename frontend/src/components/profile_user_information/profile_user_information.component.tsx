@@ -1,12 +1,13 @@
+import { User } from "@/utils/interfaces";
 import { useEffect, useState } from "react";
 
 const ProfileUserInformation = () => {
-  const [data, setData] = useState<{ username: string; email: string }>();
+  const [data, setData] = useState<User>();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Token 79fe4f0384bb3da659d9958bb3e9c76c27bfdef9249e6e6dde46b074f554d9e6`,
+      Authorization: `Token ${localStorage.getItem("token")}`,
     };
     const getUserInfo = async () => {
       const res = await fetch(
@@ -17,6 +18,7 @@ const ProfileUserInformation = () => {
           credentials: "include",
         }
       );
+      //console.log("RES => ", res.json());
       setData(await res.json());
       setIsLoading(false);
     };
@@ -26,16 +28,16 @@ const ProfileUserInformation = () => {
   if (isLoading) return <p>loading...</p>;
   if (!data) return <p>No Profile Data</p>;
   return (
-    <div className="flex flex-col items-center">
+    <div className="p-2 flex flex-col items-center border border-[#f7fbf9] rounded">
       <img
-        src="https://dummyimage.com/100x100"
+        src={data.profile_picture}
         alt="user profile"
         className="w-32 h-32 p-2 rounded-full"
       />
-      <h1 className="w-48 px-2 break-words text-center text-slate-200">
+      <h1 className="w-48 px-2 break-words font-semibold text-xl text-center text-[#f7fbf9]">
         {data.username}
       </h1>
-      <h2 className="w-48 px-2 break-words text-xs text-center text-slate-200">
+      <h2 className="w-48 px-2 break-words text-xs text-center text-[#f7fbf9]">
         {data.email}
       </h2>
     </div>
