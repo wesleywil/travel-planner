@@ -143,7 +143,9 @@ plans/migrations
 
 #Ignore all image files
 *.jpg
+*.jpeg
 *.png
 
 #Allow the default image
 !static/images/plan_images/default.jpg
+!static/images/profiles/default.jpg
