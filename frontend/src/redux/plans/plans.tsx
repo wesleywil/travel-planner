@@ -3,6 +3,7 @@ import { Plans } from "@/utils/interfaces";
 
 export interface PlanState {
   plan: Plans;
+  originalPlans: Plans[];
   plans: Plans[];
   status: string;
   error: string;
@@ -10,6 +11,7 @@ export interface PlanState {
 
 const initialState: PlanState = {
   plan: {} as Plans,
+  originalPlans: [],
   plans: [],
   status: "idle",
   error: "",
@@ -102,6 +104,18 @@ export const planSlice = createSlice({
       );
       state.plan = selectedPlan !== undefined ? selectedPlan : ({} as Plans);
     },
+    filterCompleted: (state, action: PayloadAction<boolean>) => {
+      const filteredCompleted = state.originalPlans.filter(
+        (item) => item.completed === action.payload
+      );
+      return {
+        ...state,
+        plans: filteredCompleted,
+      };
+    },
+    resetFilter: (state) => {
+      state.plans = state.originalPlans;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -111,6 +125,7 @@ export const planSlice = createSlice({
       .addCase(fetchPlans.fulfilled, (state, { payload }) => {
         state.status = "plans fetched";
         state.plans = payload;
+        state.originalPlans = payload;
       })
       .addCase(fetchPlans.rejected, (state, { payload }) => {
         state.status = "failed to fetch the plans";
@@ -160,6 +175,6 @@ export const planSlice = createSlice({
   },
 });
 
-export const { selectPlan } = planSlice.actions;
+export const { selectPlan, filterCompleted, resetFilter } = planSlice.actions;
 
 export default planSlice.reducer;
