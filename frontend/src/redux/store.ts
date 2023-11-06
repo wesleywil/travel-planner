@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import planReducer from "./plans/plans";
 import todoReducer from "./todos/todos";
+import userReducer from "./user/user";
 import utilsReducer from "./utils/utils";
 
 export const store = configureStore({
@@ -8,6 +9,7 @@ export const store = configureStore({
         utils:utilsReducer,
         plans:planReducer,
         todos:todoReducer,
+        user: userReducer,
     }
 });
 
