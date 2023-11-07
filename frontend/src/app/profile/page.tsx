@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "@/redux/store";
 import { retrieveUser } from "@/redux/user/user";
 
+import ProfileForm from "@/components/profile_form/profile_form.component";
 import ProfilePlanForm from "@/components/profile_plan_form/profile_plan_form.component";
 import ProfileTravels from "@/components/profile_travels/profile_travels.component";
 import ProfileUserInformation from "@/components/profile_user_information/profile_user_information.component";
@@ -16,6 +17,9 @@ import Loading from "@/components/loading/loading.component";
 export default function Profile() {
   const formHidden = useSelector(
     (state: RootState) => state.utils.hideFormPlan
+  );
+  const profileFormHidden = useSelector(
+    (state: RootState) => state.utils.hideProfileForm
   );
   const planDetailsHidden = useSelector(
     (state: RootState) => state.utils.hidePlanDetails
@@ -40,7 +44,7 @@ export default function Profile() {
         {/* Form */}
         {formHidden ? "" : <ProfilePlanForm />}
         {planDetailsHidden ? "" : <ProfilePlanDetails />}
-
+        {profileFormHidden ? "" : <ProfileForm />}
         {/* User Information */}
         <ProfileUserInformation />
         {/* Travels */}
