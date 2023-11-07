@@ -1,9 +1,10 @@
 from django.contrib.auth import login
 from django.http import Http404
 
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from knox.models import AuthToken
 from knox.views import LoginView as KnoxLoginView
@@ -14,6 +15,7 @@ from accounts.models import User
 from accounts.serializers import (
     UserModelSerializer,
     RegisterSerializer,
+    UpdateUserSerializer,
 )
 
 
@@ -52,3 +54,28 @@ class UserProfileView(generics.RetrieveAPIView):
             return self.request.user
         except User.DoesNotExist:
             raise Http404
+
+
+class UserUpdatePictureView(APIView):
+    permission_classes = ([permissions.IsAuthenticated])
+    authentication_classes = (TokenAuthentication,)
+
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = UpdateUserSerializer(user, context={'request': None})
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        user = self.get_object(pk)
+        serializer = UpdateUserSerializer(
+            user, data=request.data, context={'request': None})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
