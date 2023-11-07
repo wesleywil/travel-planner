@@ -28,6 +28,22 @@ export const retrieveUser = createAsyncThunk("user/retrieveUser", async () => {
   return user;
 });
 
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (userData: FormData) => {
+    const res = await fetch(`${url}updateUser/${userData.get("id")}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      body: userData,
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  }
+);
+
 export const signIn = createAsyncThunk(
   "user/signIn",
   async ({ username, password }: { username: string; password: string }) => {
@@ -93,6 +109,16 @@ export const userSlice = createSlice({
       })
       .addCase(retrieveUser.rejected, (state, { payload }) => {
         state.status = "user info failed to be retrieved";
+        state.error = String(payload);
+      })
+      .addCase(updateUser.pending, (state) => {
+        state.status = "trying to update user info";
+      })
+      .addCase(updateUser.fulfilled, (state) => {
+        state.status = "user info updated";
+      })
+      .addCase(updateUser.rejected, (state, { payload }) => {
+        state.status = "user info failed to update";
         state.error = String(payload);
       })
       .addCase(signIn.pending, (state) => {
