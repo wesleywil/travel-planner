@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
-import type { AppDispatch } from "@/redux/store";
+import type { AppDispatch, RootState } from "@/redux/store";
 import { switchFormHidden } from "@/redux/utils/utils";
 import { createPlan } from "@/redux/plans/plans";
 
 const ProfilePlanForm = () => {
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -14,7 +15,7 @@ const ProfilePlanForm = () => {
     const completed = data.get("completed") === "on"; // Check if the checkbox is checked
 
     const postData = {
-      user: 1, // To be changed later, needs to get the ID from the logged-in user
+      user: user.id,
       place: data.get("place") as string,
       country: data.get("country") as string,
       travel_date: data.get("travel_date") as string,
