@@ -23,13 +23,13 @@ const ProfileTravelsControls = () => {
         </button>
         <button
           onClick={() => dispatch(filterCompleted(false))}
-          className="px-2 py-1 text-[#97c34f] hover:text-[#f7fbf9] border border-[#97c34f] hover:border-[#f7fbf9] rounded transform duration-500 ease-in-out"
+          className="px-2 py-1 bg-[#97c34f] hover:bg-[#97c34f]/70 rounded transform duration-500 ease-in-out"
         >
           Not Visited
         </button>
         <button
           onClick={() => dispatch(filterCompleted(true))}
-          className="px-2 py-1 bg-[#97c34f] hover:bg-[#97c34f]/70 rounded transform duration-500 ease-in-out"
+          className="px-2 py-1 text-[#97c34f] hover:text-[#f7fbf9] border border-[#97c34f] hover:border-[#f7fbf9] rounded transform duration-500 ease-in-out"
         >
           Visited
         </button>

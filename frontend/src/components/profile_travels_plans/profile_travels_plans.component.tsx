@@ -11,14 +11,7 @@ const ProfileTravelsPlans = ({ plans }: ProfileTravelsPlansProps) => {
     <div className="w-full h-[30rem] p-2 flex gap-2 justify-center border border-[#f7fbf9] rounded-xl overflow-y-auto">
       {plans.length ? (
         plans.map((item) => (
-          <ProfileTravelsPlanCard
-            key={item.id}
-            id={item.id!}
-            place={item.place}
-            country={item.country}
-            travel_date={item.travel_date}
-            days={item.days}
-          />
+          <ProfileTravelsPlanCard key={item.id} data={item} />
         ))
       ) : (
         <h1 className="self-center text-[#f7fbf9] text-2xl font-bold">
