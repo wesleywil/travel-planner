@@ -71,14 +71,21 @@ export const createPlan = createAsyncThunk(
 
 export const updatePlan = createAsyncThunk(
   "plans/updatePlan",
-  async ({ id, data }: { id: number; data: Plans }) => {
-    const res = await fetch(`${url}${id}/`, {
+  async (planData: FormData) => {
+    const res = await fetch(`${url}${planData.get("id")}/`, {
       method: "PUT",
-      body: JSON.stringify(data),
-      headers: headers,
+      body: planData,
+      headers: {
+        Authorization: `Token ${
+          typeof localStorage !== "undefined"
+            ? localStorage.getItem("token")
+            : ""
+        }`,
+      },
       credentials: "include",
     });
-    return res.json();
+    const data = await res.json();
+    return data;
   }
 );
 

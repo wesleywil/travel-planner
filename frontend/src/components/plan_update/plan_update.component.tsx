@@ -1,27 +1,26 @@
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/redux/store";
 import { switchPlanDetailsHidden } from "@/redux/utils/utils";
 import { Plans } from "@/utils/interfaces";
 import { updatePlan } from "@/redux/plans/plans";
 
 const PlanUpdate = ({ data }: { data: Plans }) => {
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch<AppDispatch>();
 
   const handleUpdate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const dataForm = new FormData(form);
-    const completed = dataForm.get("completed") === "on"; // Check if the checkbox is checked
+    dataForm.append("id", String(data.id!));
+    dataForm.append("user", String(user.id!));
 
-    const postData = {
-      user: 1, // To be changed later, needs to get the ID from the logged-in user
-      place: dataForm.get("place") as string,
-      country: dataForm.get("country") as string,
-      travel_date: dataForm.get("travel_date") as string,
-      days: parseInt(dataForm.get("days") as string),
-      completed: completed,
-    };
-    dispatch(updatePlan({ id: data.id!, data: postData }));
+    dataForm.set(
+      "completed",
+      dataForm.get("completed") === "on" ? "true" : "false"
+    );
+
+    dispatch(updatePlan(dataForm));
     dispatch(switchPlanDetailsHidden());
   };
 
@@ -32,8 +31,16 @@ const PlanUpdate = ({ data }: { data: Plans }) => {
       </div>
       <form
         onSubmit={handleUpdate}
-        className="w-2/3 mt-2 flex flex-col gap-2 text-black font-semibold"
+        className="w-2/3 mt-2 p-1 flex flex-col gap-2 text-black font-semibold"
       >
+        <div className="px-2 py-1 flex gap-2 bg-[#f7fbf9] rounded">
+          <input
+            type="file"
+            name="picture"
+            className="self-center hover:file:text-[#f7fbf9] file:bg-[#97c34f] hover:file:bg-[#2c2d35] file:outline-0 file:border-0 rounded file:transform file:duration-500 file:ease-in-out"
+          />
+          <span className="self-center">Picture</span>
+        </div>
         <input
           type="text"
           name="place"
