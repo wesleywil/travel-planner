@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { fetchTodos } from "@/redux/todos/todos";
+import { switchTodoFormHidden } from "@/redux/utils/utils";
+
 import TodoList from "../todo_list/todo_list.component";
 import TodoForm from "../todo_form/todo_form.component";
 
@@ -12,10 +14,12 @@ const PlanTodoList = ({ planId }: { planId: number }) => {
   const hidePlanDetails = useSelector(
     (state: RootState) => state.utils.hidePlanDetails
   );
+  const hideTodoForm = useSelector(
+    (state: RootState) => state.utils.hideTodoForm
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [formHidden, setFormHidden] = useState(true);
 
   useEffect(() => {
     dispatch(fetchTodos(planId));
@@ -38,7 +42,7 @@ const PlanTodoList = ({ planId }: { planId: number }) => {
     <div className="w-2/3 min-h-[20rem] my-2 flex flex-col text-[#2c2d35] bg-[#2c2d35]/70 border border-[#f7fbf9] rounded overflow-hidden">
       <div className="w-full px-1 flex justify-between bg-[#97c34f]">
         <button
-          onClick={() => setFormHidden(!formHidden)}
+          onClick={() => dispatch(switchTodoFormHidden())}
           className="p-1 my-2 text-2xl font-bold hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded-full transform duration-500 ease-in-out"
         >
           <FaPlus />
@@ -55,7 +59,7 @@ const PlanTodoList = ({ planId }: { planId: number }) => {
           </div>
         </div>
       </div>
-      {formHidden ? <TodoList todos={todos} /> : <TodoForm planId={planId} />}
+      {hideTodoForm ? <TodoList todos={todos} /> : <TodoForm planId={planId} />}
     </div>
   );
 };

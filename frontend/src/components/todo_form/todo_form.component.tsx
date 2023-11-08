@@ -1,6 +1,7 @@
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { createTodo } from "@/redux/todos/todos";
-import { useDispatch } from "react-redux";
+import { switchTodoFormHidden } from "@/redux/utils/utils";
 
 const TodoForm = ({ planId }: { planId: number }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -20,6 +21,7 @@ const TodoForm = ({ planId }: { planId: number }) => {
       completed: completed,
     };
     dispatch(createTodo({ planId: planId, data: postData }));
+    dispatch(switchTodoFormHidden());
   };
   return (
     <form
@@ -29,12 +31,14 @@ const TodoForm = ({ planId }: { planId: number }) => {
       <input
         type="text"
         name="task"
+        required
         placeholder="Task ex:Eat, Visit"
         className="px-2 py-1 rounded"
       />
       <textarea
         name="description"
         placeholder="describe the task that you will be performing"
+        required
         rows={5}
         className="px-2 py-1 rounded"
       ></textarea>
@@ -52,6 +56,7 @@ const TodoForm = ({ planId }: { planId: number }) => {
           Submit
         </button>
         <button
+          onClick={() => dispatch(switchTodoFormHidden())}
           type="button"
           className="px-2 py-1 text-[#2c2d35] bg-[#97c34f] hover:bg-[#f7fbf9] font-semibold rounded"
         >
