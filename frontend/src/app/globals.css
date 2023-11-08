@@ -4,4 +4,8 @@
 
 body{
   background-color: #2c2d35;
+  background-image: url('/bg_cloud.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 60%;
+  background-position: center bottom;
 }
