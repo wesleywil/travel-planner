@@ -120,6 +120,34 @@ export const planSlice = createSlice({
         plans: filteredCompleted,
       };
     },
+    filterPlans: (
+      state,
+      action: PayloadAction<{
+        year?: number;
+        month?: number;
+        place?: string;
+        country?: string;
+      }>
+    ) => {
+      const { year, month, place, country } = action.payload;
+      // Check if any of the search criteria is undefined or empty
+      if (!year && !month && !place && !country) {
+        return { ...state, plans: state.originalPlans };
+      }
+
+      const filteredPlans = state.originalPlans.filter((plan) => {
+        const planYear = parseInt(plan.travel_date.slice(0, 4));
+        const planMonth = parseInt(plan.travel_date.slice(5, 7));
+
+        return (
+          (!year || planYear == year) &&
+          (!month || planMonth == month) &&
+          (!place || plan.place.toLowerCase() === place.toLowerCase()) &&
+          (!country || plan.country.toLowerCase() === country.toLowerCase())
+        );
+      });
+      return { ...state, plans: filteredPlans };
+    },
     resetFilter: (state) => {
       state.plans = state.originalPlans;
     },
@@ -182,6 +210,7 @@ export const planSlice = createSlice({
   },
 });
 
-export const { selectPlan, filterCompleted, resetFilter } = planSlice.actions;
+export const { selectPlan, filterCompleted, filterPlans, resetFilter } =
+  planSlice.actions;
 
 export default planSlice.reducer;
