@@ -6,6 +6,7 @@ export interface UtilState {
   hidePlanDetails: boolean;
   hideTodoDetails: boolean;
   hideTodoForm: boolean;
+  hidePlanSharing: boolean;
 }
 
 const initialState: UtilState = {
@@ -14,6 +15,7 @@ const initialState: UtilState = {
   hidePlanDetails: true,
   hideTodoDetails: true,
   hideTodoForm: true,
+  hidePlanSharing: true,
 };
 
 export const utilsSlice = createSlice({
@@ -35,6 +37,9 @@ export const utilsSlice = createSlice({
     switchTodoFormHidden: (state) => {
       state.hideTodoForm = !state.hideTodoForm;
     },
+    switchPlanSharingHidden: (state) => {
+      state.hidePlanSharing = !state.hidePlanSharing;
+    },
   },
 });
 
@@ -44,6 +49,7 @@ export const {
   switchPlanDetailsHidden,
   switchTodoDetailsHidden,
   switchTodoFormHidden,
+  switchPlanSharingHidden,
 } = utilsSlice.actions;
 
 export default utilsSlice.reducer;
