@@ -9,3 +9,8 @@ body{
   background-size: 100% 60%;
   background-position: center bottom;
 }
+
+.pattern2 {
+  background-image: repeating-linear-gradient(-45deg, #2c2d3538, #2c2d3538, transparent 1px, transparent 6px);
+  background-size: 4px 4px;
+}

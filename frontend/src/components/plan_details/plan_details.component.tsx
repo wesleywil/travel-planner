@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt, FaShareAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/redux/store";
 import { deletePlan } from "@/redux/plans/plans";
-import { switchPlanDetailsHidden } from "@/redux/utils/utils";
+import {
+  switchPlanDetailsHidden,
+  switchPlanSharingHidden,
+} from "@/redux/utils/utils";
 import { Plans } from "@/utils/interfaces";
 
 const PlanDetails = ({ data }: { data: Plans }) => {
@@ -15,14 +18,22 @@ const PlanDetails = ({ data }: { data: Plans }) => {
     dispatch(switchPlanDetailsHidden());
   };
   return (
-    <div className="w-1/2 flex flex-col items-center justify-center gap-2 text-[#2c2d35] bg-[#2c2d35]/70 border border-[#f7fbf9] rounded overflow-hidden">
-      <div className="w-full flex flex-col bg-[#97c34f]">
+    <div className="w-1/2 flex flex-col items-center  gap-2 text-[#2c2d35] bg-[#2c2d35]/70 border border-[#f7fbf9] rounded overflow-hidden">
+      <div className="w-full min-h-[2rem] flex flex-col bg-[#97c34f]">
         <div className="w-full px-2 flex justify-between ">
-          <h1 className="self-center font-bold text-xl">Info</h1>
+          <div className="flex gap-2">
+            <button
+              onClick={() => dispatch(switchPlanSharingHidden())}
+              className="my-1 p-1 hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded transform duration-500 ease-in-out"
+            >
+              <FaShareAlt />
+            </button>
+            <h1 className="self-center font-bold text-xl">Info</h1>
+          </div>
 
           <button
             onClick={() => setHideMessage(!hideMessage)}
-            className="my-1 p-1 hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded"
+            className="my-1 p-1 hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded transform duration-500 ease-in-out"
           >
             <FaTrashAlt />
           </button>

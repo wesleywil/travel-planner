@@ -13,6 +13,7 @@ import ProfileUserInformation from "@/components/profile_user_information/profil
 import ProfilePlanDetails from "@/components/profile_plan_details/profile_plan_details.component";
 import NotAuthenticated from "@/components/not_authenticated/not_authenticated.component";
 import Loading from "@/components/loading/loading.component";
+import PlanSharing from "@/components/plan_sharing/plan_sharing.component";
 
 export default function Profile() {
   const formHidden = useSelector(
@@ -23,6 +24,9 @@ export default function Profile() {
   );
   const planDetailsHidden = useSelector(
     (state: RootState) => state.utils.hidePlanDetails
+  );
+  const planSharingHidden = useSelector(
+    (state: RootState) => state.utils.hidePlanSharing
   );
   const status = useSelector((state: RootState) => state.user.status);
   const dispatch = useDispatch<AppDispatch>();
@@ -45,6 +49,7 @@ export default function Profile() {
         {formHidden ? "" : <ProfilePlanForm />}
         {planDetailsHidden ? "" : <ProfilePlanDetails />}
         {profileFormHidden ? "" : <ProfileForm />}
+        {planSharingHidden ? "" : <PlanSharing />}
         {/* User Information */}
         <ProfileUserInformation />
         {/* Travels */}
