@@ -1,10 +1,11 @@
 import { ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaTimes, FaTrashAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import type { AppDispatch, RootState } from "@/redux/store";
 import { switchTodoDetailsHidden } from "@/redux/utils/utils";
 import { updateTodo, deleteTodo } from "@/redux/todos/todos";
 import { ToDo } from "@/utils/interfaces";
+import ButtonClose from "../button_close/button_close.component";
 
 const TodoDetails = () => {
   const todo = useSelector((state: RootState) => state.todos.todo);
@@ -30,12 +31,7 @@ const TodoDetails = () => {
         <h1 className="grow self-center text-center font-bold text-xl">
           To Do Details
         </h1>
-        <button
-          onClick={() => dispatch(switchTodoDetailsHidden())}
-          className="self-center my-1 p-1 text-xl font-bold hover:text-[#f7fbf9] bg-[#f7fbf9] hover:bg-[#2c2d35] rounded-full transform duration-500 ease-in-out"
-        >
-          <FaTimes />
-        </button>
+        <ButtonClose action={() => dispatch(switchTodoDetailsHidden())} />
       </div>
       <div className="p-2 flex flex-col items-center text-center text-[#f7fbf9]">
         <div className="w-full py-1 flex justify-between">

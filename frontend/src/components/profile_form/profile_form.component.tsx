@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { FaTimes } from "react-icons/fa";
 import { AppDispatch, RootState } from "@/redux/store";
 import { updateUser } from "@/redux/user/user";
 import { switchProfileFormHidden } from "@/redux/utils/utils";
+import ButtonClose from "../button_close/button_close.component";
 
 const ProfileForm = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -20,9 +20,7 @@ const ProfileForm = () => {
 
   return (
     <div className="absolute min-h-screen min-w-full flex flex-col items-center justify-center bg-[#2c2d35]/70 z-30">
-      <button className="p-2 font-bold text-[#2c2d35] text-3xl bg-[#97c34f] hover:bg-[#f7fbf9] rounded-full transform duration-500 ease-in-out">
-        <FaTimes />
-      </button>
+      <ButtonClose action={() => dispatch(switchProfileFormHidden())} />
       <h1 className="my-1 text-2xl text-[#f7fbf9]">Update User Information</h1>
       <form
         onSubmit={handleUpdate}
