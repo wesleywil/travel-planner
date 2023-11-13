@@ -8,6 +8,32 @@ Plan your adventures, curate a personalized to-do list for each destination, and
 
 **FrontEnd:** NextJs(Typescript), Redux-Toolkit, React-Redux and Tailwindcss
 
+## Screenshots
+
+### Home
+
+![Homepage](https://i.imgur.com/a7HejYG.png)
+
+### Profile
+
+![Profile](https://i.imgur.com/MLQKzyF.png)
+
+### New Plan
+
+![New Plan](https://i.imgur.com/qpYwb6y.png)
+
+### Plan Details
+
+![Plan Details](https://i.imgur.com/NTZuRKC.png)
+
+### New To-do
+
+![New To-do](https://i.imgur.com/N2qVOaJ.png)
+
+### Plan Share Card
+
+![Plan Share Card](https://i.imgur.com/Rs1QULd.png)
+
 ## Run Locally
 
 ### Clone the project
